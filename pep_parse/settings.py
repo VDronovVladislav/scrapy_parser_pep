@@ -101,3 +101,7 @@ FEED_EXPORT_FIELDS = {
     'name': 'Название',
     'status': 'Статус'
 }
+
+ITEM_PIPELINES = {
+    'pep_parse.pipelines.PepParsePipeline': 300,
+}
