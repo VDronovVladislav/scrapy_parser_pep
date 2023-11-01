@@ -1,3 +1,4 @@
+import csv
 import datetime as dt
 from collections import defaultdict
 
@@ -6,16 +7,12 @@ from pep_parse.constants import DATETIME_FORMAT, BASE_DIR
 
 class PepParsePipeline:
 
-    def __init__(self):
-        self.status_count = defaultdict(int)
-        self.total = 0
-
     def open_spider(self, spider):
-        pass
+        self.status_count = defaultdict(int)
 
     def process_item(self, item, spider):
         self.status_count[item['status']] += 1
-        self.total += 1
+        self.total = sum(self.status_count.values())
         return item
 
     def close_spider(self, spider):
@@ -26,7 +23,7 @@ class PepParsePipeline:
         file_path = result_dir / filename
 
         with open(file_path, mode='w', encoding='utf-8') as f:
-            f.write('Статус,Количество\n')
-            for key, value in self.status_count.items():
-                f.write(f'{key},{value}\n')
-            f.write(f'Total,{self.total}\n')
+            writer = csv.writer(f, dialect='unix', quoting=csv.QUOTE_NONE)
+            writer.writerow(['Статус', 'Количество'])
+            writer.writerows(self.status_count.items())
+            writer.writerow(['Total', self.total])
