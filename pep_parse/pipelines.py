@@ -12,7 +12,6 @@ class PepParsePipeline:
 
     def process_item(self, item, spider):
         self.status_count[item['status']] += 1
-        self.total = sum(self.status_count.values())
         return item
 
     def close_spider(self, spider):
@@ -26,4 +25,4 @@ class PepParsePipeline:
             writer = csv.writer(f, dialect='unix', quoting=csv.QUOTE_NONE)
             writer.writerow(['Статус', 'Количество'])
             writer.writerows(self.status_count.items())
-            writer.writerow(['Total', self.total])
+            writer.writerow(['Total', sum(self.status_count.values())])

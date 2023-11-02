@@ -1,7 +1,5 @@
 Статус,Количество
 Active,31
-Accepted,45
-Provisional,1
 Final,271
 Rejected,122
 Superseded,20
@@ -9,4 +7,6 @@ Withdrawn,52
 April Fool!,1
 Deferred,34
 Draft,30
+Accepted,45
+Provisional,1
 Total,607
