@@ -17,7 +17,7 @@ cd scrapy_parser_pep
 ```
 Cоздать и активировать виртуальное окружение:
 ```sh
-python -m venv env
+python -m venv venv
 ```
 * Если у вас Linux/macOS
 
